@@ -36,6 +36,7 @@ public class SmallestKthValOfFunction {
         });
         HashSet<Ele> hashSet = new HashSet<>();
         hashSet.add(new Ele(1, 1, 1));
+        minHeap.add(new Ele(1, 1, 1));
         List<Double> res = new LinkedList<>();
         while (res.size() < k) {
             Ele cur = minHeap.poll();
@@ -43,19 +44,25 @@ public class SmallestKthValOfFunction {
             Ele extand1 = new Ele(cur.x + 1, cur.y, cur.z);
             Ele extand2 = new Ele(cur.x, cur.y + 1, cur.z);
             Ele extand3 = new Ele(cur.x, cur.y, cur.z + 1);
-            if (!hashSet.contains(extand1))
+            if (!hashSet.contains(extand1)) {
                 hashSet.add(extand1);
-            if (!hashSet.contains(extand2))
+                minHeap.add(extand1);
+            }
+            if (!hashSet.contains(extand2)) {
                 hashSet.add(extand2);
-            if (!hashSet.contains(extand3))
+                minHeap.add(extand2);
+            }
+            if (!hashSet.contains(extand3)) {
                 hashSet.add(extand3);
+                minHeap.add(extand3);
+            }
         }
         return res;
     }
     
     public static void main(String[] args) {
         SmallestKthValOfFunction s = new SmallestKthValOfFunction();
-        for (double b : s.smallestKthVal(5))
+        for (double b : s.smallestKthVal(9))
             System.out.print(b + "  ");
         
     }
