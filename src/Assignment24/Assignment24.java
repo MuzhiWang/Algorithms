@@ -15,7 +15,7 @@ public class Assignment24 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // hasn't finished: all tasks， NoComCharStringsWithMaxProduct
+        // hasn't finished: all tasks
         // TODO code application logic here
     }
     
