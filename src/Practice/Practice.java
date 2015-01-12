@@ -6,6 +6,7 @@
 package Practice;
 import java.util.PriorityQueue;
 import java.util.Comparator;
+import java.util.HashMap;
 /**
  *
  * @author Muzhi
@@ -58,6 +59,21 @@ public class Practice {
       else
         return -1;
     }
+    
+    /******* HashMap test ******/
+    public void hashMapTest() {
+        //HashMap<Pair> hashMap = new HashMap<>();
+        HashMap<>
+    }
+    
+    public static class Pair {
+        int num;
+        Pair(int num) {
+            this.num = num;
+        }
+    }
+    
+    
     
     public static void main(String[] args) {
         //int index = 
