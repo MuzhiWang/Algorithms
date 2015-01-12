@@ -5,9 +5,11 @@
  */
 package Assignment24;
 
+import java.util.Arrays;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -36,11 +38,19 @@ public class ShortestPathCostToKEquipments {
             }
         }
         int minCost = Integer.MAX_VALUE;
+        List<Integer> res = new LinkedList<>();
+        res.add(-1);
+        res.add(-1);
         for (int i = 0; i < gym.length; ++i) {
-            for (int j = 0; i < gym[]) {
-                
+            for (int j = 0; i < gym[0].length; ++j) {
+                if (gym[i][j] != 'E' && gym[i][j] != 'O' && minCost > sumCost[i][j]) {
+                    minCost = sumCost[i][j];
+                    res.set(0, i);
+                    res.set(1, j);
+                }
             }
         }
+        return res;
     }
     
     
@@ -90,6 +100,20 @@ public class ShortestPathCostToKEquipments {
             this.column = column;
             this.chair = chair;
         }
+    }
+    
+    public static void main(String[] args) {
+        ShortestPathCostToKEquipments s = new ShortestPathCostToKEquipments();
+        char[][] gym = {{'X', 'X', 'O', 'E'}, {'X', 'X', 'X', 'X'}, {'X', 'O', 'E', 'X'}, {'E', 'O', 'X', 'X'}};
+        for (int i = 0; i < gym.length; ++i) {
+            for (int j = 0; j < gym[0].length; ++j) {
+                System.out.print(gym[i][j] + " ");
+            }
+            System.out.println();
+        }
+        List<Integer> res = s.shortestPath(gym);
+        System.out.println(Objects.toString(res));
+        
     }
     
 }
