@@ -78,7 +78,7 @@ public class ShortestPathCostToKEquipments {
             } else if (cur.row - 1 >= 0 && gym[cur.row - 1][cur.column] != 'O' && gym[cur.row - 1][cur.column] != 'E' && cost[cur.row - 1][cur.column] > cost[cur.row][cur.column] + 1) {
                 cost[cur.row - 1][cur.column] = cost[cur.row][cur.column] + 1;
             }
-            if (cur.column + 1 < gym[0].length && gym[cur.row][cur.column + 1] != 'O' && gym[cur.row][cur.column + 1] != 'E' && visited[cur.row][cur.column + 1]) {
+            if (cur.column + 1 < gym[0].length && gym[cur.row][cur.column + 1] != 'O' && gym[cur.row][cur.column + 1] != 'E' && !visited[cur.row][cur.column + 1]) {
                 queue.add(new Pair(cur.row, cur.column + 1, gym[cur.row][cur.column + 1]));
                 visited[cur.row][cur.column + 1] = true;
                 cost[cur.row][cur.column + 1] = cost[cur.row][cur.column] + 1;
