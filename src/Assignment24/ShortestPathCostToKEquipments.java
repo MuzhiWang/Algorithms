@@ -42,18 +42,24 @@ public class ShortestPathCostToKEquipments {
         }
         int minCost = Integer.MAX_VALUE;
         List<Integer> res = new LinkedList<>();
-        res.add(-1);
-        res.add(-1);
+        res.add(null);
+        res.add(null);
         for (int i = 0; i < gym.length; ++i) {
             for (int j = 0; j < gym[0].length; ++j) {
-                if (gym[i][j] != 'E' && gym[i][j] != 'O' && minCost > sumCost[i][j]) {
+                if (gym[i][j] != 'E' && gym[i][j] != 'O' && minCost > sumCost[i][j] && sumCost[i][j] > 0) {
                     minCost = sumCost[i][j];
                     res.set(0, i);
                     res.set(1, j);
+                } else if (gym[i][j] == 'E') {
+                  if (sumCost[i][j] < 0)
+                    return null;
                 }
             }
         }
-        return res;
+        if (res.get(0) != null)
+          return res;
+        else 
+          return null;
     }
     
     
@@ -64,32 +70,32 @@ public class ShortestPathCostToKEquipments {
         visited[row][column] = true;
         while (!queue.isEmpty()) {
             Pair cur = queue.poll();
-            if (cur.row + 1 < gym.length && gym[cur.row + 1][cur.column] != 'O' && gym[cur.row + 1][cur.column] != 'E' && !visited[cur.row + 1][cur.column]) {
+            if (cur.row + 1 < gym.length && gym[cur.row + 1][cur.column] != 'O' && !visited[cur.row + 1][cur.column]) {
                 queue.add(new Pair(cur.row + 1, cur.column, gym[cur.row + 1][cur.column]));
                 visited[cur.row + 1][cur.column] = true;
                 cost[cur.row + 1][cur.column] = cost[cur.row][cur.column] + 1;
-            } else if (cur.row + 1 < gym.length && gym[cur.row + 1][cur.column] != 'O' && gym[cur.row + 1][cur.column] != 'E' && cost[cur.row + 1][cur.column] > cost[cur.row][cur.column] + 1) {
+            } else if (cur.row + 1 < gym.length && gym[cur.row + 1][cur.column] != 'O' && cost[cur.row + 1][cur.column] > cost[cur.row][cur.column] + 1) {
                 cost[cur.row + 1][cur.column] = cost[cur.row][cur.column] + 1;
             }
-            if (cur.row - 1 >= 0 && gym[cur.row - 1][cur.column] != 'O' && gym[cur.row - 1][cur.column] != 'E' && !visited[cur.row - 1][cur.column]) {
+            if (cur.row - 1 >= 0 && gym[cur.row - 1][cur.column] != 'O' && !visited[cur.row - 1][cur.column]) {
                 queue.add(new Pair(cur.row - 1, cur.column, gym[cur.row - 1][cur.column]));
                 visited[cur.row - 1][cur.column] = true;
                 cost[cur.row - 1][cur.column] = cost[cur.row][cur.column] + 1;
-            } else if (cur.row - 1 >= 0 && gym[cur.row - 1][cur.column] != 'O' && gym[cur.row - 1][cur.column] != 'E' && cost[cur.row - 1][cur.column] > cost[cur.row][cur.column] + 1) {
+            } else if (cur.row - 1 >= 0 && gym[cur.row - 1][cur.column] != 'O' && cost[cur.row - 1][cur.column] > cost[cur.row][cur.column] + 1) {
                 cost[cur.row - 1][cur.column] = cost[cur.row][cur.column] + 1;
             }
-            if (cur.column + 1 < gym[0].length && gym[cur.row][cur.column + 1] != 'O' && gym[cur.row][cur.column + 1] != 'E' && !visited[cur.row][cur.column + 1]) {
+            if (cur.column + 1 < gym[0].length && gym[cur.row][cur.column + 1] != 'O' && !visited[cur.row][cur.column + 1]) {
                 queue.add(new Pair(cur.row, cur.column + 1, gym[cur.row][cur.column + 1]));
                 visited[cur.row][cur.column + 1] = true;
                 cost[cur.row][cur.column + 1] = cost[cur.row][cur.column] + 1;
-            } else if (cur.column + 1 < gym[0].length && gym[cur.row][cur.column + 1] != 'O' && gym[cur.row][cur.column + 1] != 'E' && cost[cur.row][cur.column + 1] > cost[cur.row][cur.column] + 1) {
+            } else if (cur.column + 1 < gym[0].length && gym[cur.row][cur.column + 1] != 'O' && cost[cur.row][cur.column + 1] > cost[cur.row][cur.column] + 1) {
                 cost[cur.row][cur.column + 1] = cost[cur.row][cur.column] + 1;
             }
-            if (cur.column - 1 >= 0 && gym[cur.row][cur.column - 1] != 'O' && gym[cur.row][cur.column - 1] != 'E' && !visited[cur.row][cur.column - 1]) {
+            if (cur.column - 1 >= 0 && gym[cur.row][cur.column - 1] != 'O' && !visited[cur.row][cur.column - 1]) {
                 queue.add(new Pair(cur.row, cur.column - 1, gym[cur.row][cur.column - 1]));
                 visited[cur.row][cur.column - 1] = true;
                 cost[cur.row][cur.column - 1] = cost[cur.row][cur.column] + 1;
-            } else if (cur.column - 1 >= 0 && gym[cur.row][cur.column - 1] != 'O' && gym[cur.row][cur.column - 1] != 'E' && cost[cur.row][cur.column - 1] > cost[cur.row][cur.column] + 1) {
+            } else if (cur.column - 1 >= 0 && gym[cur.row][cur.column - 1] != 'O' && cost[cur.row][cur.column - 1] > cost[cur.row][cur.column] + 1) {
                 cost[cur.row][cur.column - 1] = cost[cur.row][cur.column] + 1;
             }
         }
@@ -107,7 +113,8 @@ public class ShortestPathCostToKEquipments {
     
     public static void main(String[] args) {
         ShortestPathCostToKEquipments s = new ShortestPathCostToKEquipments();
-        char[][] gym = {{'X', 'X', 'O', 'E'}, {'X', 'X', 'X', 'X'}, {'X', 'O', 'E', 'X'}, {'E', 'O', 'X', 'X'}};
+        //char[][] gym = {{'X', 'X', 'O', 'E'}, {'X', 'X', 'X', 'X'}, {'X', 'O', 'E', 'X'}, {'E', 'O', 'X', 'X'}};
+        char[][] gym = {{'E', 'X', 'E', 'O', 'X'}, {'E', 'O', 'X', 'X', 'E'}, {'O', 'O', 'E', 'X', 'X'}, {'X', 'O', 'X', 'E', 'E'}, {'E', 'X', 'X', 'X', 'X'}};
         for (int i = 0; i < gym.length; ++i) {
             for (int j = 0; j < gym[0].length; ++j) {
                 System.out.print(gym[i][j] + " ");
