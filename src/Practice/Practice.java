@@ -7,6 +7,7 @@ package Practice;
 import java.util.PriorityQueue;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 /**
  *
  * @author Muzhi
@@ -62,8 +63,11 @@ public class Practice {
     
     /******* HashMap test ******/
     public void hashMapTest() {
-        //HashMap<Pair> hashMap = new HashMap<>();
-        HashMap<>
+        HashSet<Pair> hashSet = new HashSet<>();
+        HashMap<Pair, Integer> hashMap = new HashMap<>();
+        hashSet.add(new Pair(1));
+        System.out.println("HashSet test: " + hashSet.contains(new Pair(1)));
+        System.out.println("HashMap test: " );
     }
     
     public static class Pair {
@@ -81,6 +85,8 @@ public class Practice {
         Practice p = new Practice();
         int min = p.minJump(array, 0);
         System.out.println(min);
+        
+        p.hashMapTest();
     }
     
 }
