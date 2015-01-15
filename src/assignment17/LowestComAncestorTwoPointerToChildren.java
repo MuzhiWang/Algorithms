@@ -15,31 +15,27 @@ import java.util.List;
  * @author Muzhi
  */
 public class LowestComAncestorTwoPointerToChildren {
-    /******** This should be optimized method ********/
+    /******** This is the optimized method ********/
     public Tree LCATwoPointerToChinldrenOptimized(Tree root, Tree nodeOne, Tree nodeTwo) {
         assert root != null;
         if (nodeOne == nodeTwo) {
             return nodeOne;
         }
-        
         return LCA2PointerHelper(root, nodeOne, nodeTwo);
     }
     
     private Tree LCA2PointerHelper(Tree cur, Tree nodeOne, Tree nodeTwo) {
-        if (cur == null) {
+        if (cur == null) 
             return null;
-        }
-        if (cur == nodeOne || cur == nodeTwo) {
+        if (cur == nodeOne || cur == nodeTwo)
             return cur;
-        }
         
         Tree left = LCA2PointerHelper(cur.left, nodeOne, nodeTwo);
         Tree right = LCA2PointerHelper(cur.right, nodeOne, nodeTwo);
-        if (left != null && right != null) {
+        if (left != null && right != null) 
             return cur;
-        }
-        return (left != null)? left : right;
         
+        return (left != null)? left : right;
     }
     
     
@@ -58,9 +54,8 @@ public class LowestComAncestorTwoPointerToChildren {
     }
     
     private int LCATwoPointerHeler(Tree root, Tree cur, Tree nodeOne, Tree nodeTwo, int[] nodeFlag, List<Tree> result) {
-        if (cur == null) {
+        if (cur == null) 
             return -1;
-        }
         if (cur == nodeOne) {
             nodeFlag[0] = 1;
             result.add(cur);
