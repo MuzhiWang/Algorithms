@@ -32,14 +32,10 @@ public class StringConversion {
             res[cur++] = leftChar[indexL++];
             res[cur++] = rightChar[indexR++];
         }
-        if (indexL < leftChar.length && leftChar[indexL] - '0' > 9) {
-            while (indexL < leftChar.length && indexL < res.length) 
-                res[cur++] = leftChar[indexL++];
-        }
-        if (indexR < rightChar.length && rightChar[indexR] - '0' > 9) {
-            while (indexR < rightChar.length && indexR < res.length)
-                res[cur++] = leftChar[indexR++];
-        }
+        while (indexL < leftChar.length && cur < res.length && leftChar[indexL] - '0' < 10) 
+            res[cur++] = leftChar[indexL++];
+        while (indexR < rightChar.length && cur < res.length && leftChar[indexR] - '0' < 10)
+            res[cur++] = leftChar[indexR++];
         return res;
     }
     
