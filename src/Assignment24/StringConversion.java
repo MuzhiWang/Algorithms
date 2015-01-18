@@ -11,6 +11,7 @@ package Assignment24;
  */
 public class StringConversion {
     // input string "A1B2C3D4" ----> "ABCD1234"
+    /******  The test case is not right when "A1B2C3D4E5" or "A1B2C3D4E5F6", just fit for 2^n elements *********/
     public String strConversion1(String str) {
         if (str == null || str.length() == 0) 
             return null;
