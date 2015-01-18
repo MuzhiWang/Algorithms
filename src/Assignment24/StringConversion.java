@@ -21,7 +21,7 @@ public class StringConversion {
     
     private char[] divide(char[] charStr, int left, int right) {
         if (left >= right) 
-            return null;
+            return charStr;
         int mid = left + (right - left) / 2;
         char[] leftChar = divide(charStr, left, mid);
         char[] rightChar = divide(charStr, mid + 1, right);
@@ -31,6 +31,14 @@ public class StringConversion {
         while (indexL <= mid && leftChar[indexL] - '0' > 9) {
             res[cur++] = leftChar[indexL++];
             res[cur++] = rightChar[indexR++];
+        }
+        if (indexL < leftChar.length && leftChar[indexL] - '0' > 9) {
+            while (indexL < leftChar.length && indexL < res.length) 
+                res[cur++] = leftChar[indexL++];
+        }
+        if (indexR < rightChar.length && rightChar[indexR] - '0' > 9) {
+            while (indexR < rightChar.length && indexR < res.length)
+                res[cur++] = leftChar[indexR++];
         }
         return res;
     }
