@@ -32,16 +32,17 @@ public class StringConversion {
             res[cur++] = leftChar[indexL++];
             res[cur++] = rightChar[indexR++];
         }
-        while (indexL < leftChar.length && cur < res.length && leftChar[indexL] - '0' < 10) 
+        while (indexL <= mid && cur < res.length && leftChar[indexL] - '0' < 10) 
             res[cur++] = leftChar[indexL++];
-        while (indexR < rightChar.length && cur < res.length && leftChar[indexR] - '0' < 10)
-            res[cur++] = leftChar[indexR++];
+        while (indexR < res.length && cur < res.length && rightChar[indexR] - '0' < 10) 
+            res[cur++] = rightChar[indexR++];
+        
         return res;
     }
     
     public static void main(String[] args) {
         StringConversion s = new StringConversion();
-        String res = s.strConversion1("A1B2C3D4");
+        String res = s.strConversion1("A1B2C3D4E5F6G7H8");
         System.out.println(res);
     }
     
