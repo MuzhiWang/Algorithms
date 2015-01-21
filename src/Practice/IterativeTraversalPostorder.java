@@ -32,7 +32,10 @@ public class IterativeTraversalPostorder {
                     //stack.push(cur.right);
                     stack.push(cur);
                     cur = cur.right;
-                } else if (cur.right == null) {
+                } else if (cur.left == null && cur.right == stack.peek()) {
+                    
+                }
+                else if (cur.right == null) {
                     stack.push(cur);
                     cur = cur.left;
                 } else if (cur.right == stack.peek()) {
