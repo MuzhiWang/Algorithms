@@ -42,7 +42,7 @@ public class IterativeTraversalPostorder {
     
     public static void main(String[] args) {
         IterativeTraversalPostorder it = new IterativeTraversalPostorder();
-        TreeNode root = new TreeNode().treeExample1();
+        TreeNode root = new TreeNode().treeExample3();
         ArrayList<Integer> res = it.iterativePostorder(root);
         System.out.println(Objects.toString(res));
         
