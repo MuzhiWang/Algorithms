@@ -15,7 +15,7 @@ import myTools.TreeNode;
  *
  * @author Muzhi
  */
-public class InorderTraversalIterative {
+public class IterativeTraversalInorder {
     public ArrayList<Integer> iterativeInorder(TreeNode root) {
         if (root == null)
             return null;
@@ -27,15 +27,15 @@ public class InorderTraversalIterative {
                 stack.push(cur);
                 cur = cur.left;
             } else {
-                res.add(stack.poll().value);
-                cur = cur.right;
+                res.add(stack.peek().value);
+                cur = stack.poll().right;
             }
         }
         return res;
     }
     
     public static void main(String[] args) {
-        InorderTraversalIterative in = new InorderTraversalIterative();
+        IterativeTraversalInorder in = new IterativeTraversalInorder();
         TreeNode root = new TreeNode();
         ArrayList res = in.iterativeInorder(root.treeExample1());
         System.out.println(Objects.toString(res));
