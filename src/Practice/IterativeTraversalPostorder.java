@@ -23,7 +23,7 @@ public class IterativeTraversalPostorder {
         Deque<TreeNode> stack = new LinkedList<>();
         TreeNode cur = root;
         while (cur != null || !stack.isEmpty()) {
-            if (cur != null) {
+            if (cur != null && cur != stack.peek()) {
                 if (cur.left != null) {
                     stack.push(cur);
                     if (cur.right != null)
@@ -34,8 +34,11 @@ public class IterativeTraversalPostorder {
                     cur = cur.right;
                 } else {
                     res.add(cur.value);
-                    cur = stack.poll();
+                    cur = stack.peek();
                 }
+            } else if (cur != null) {
+                res.add(stack.poll().value);
+                cur = stack.peek();
             }
         }
         return res;
