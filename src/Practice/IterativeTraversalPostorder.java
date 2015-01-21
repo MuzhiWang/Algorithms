@@ -22,30 +22,19 @@ public class IterativeTraversalPostorder {
         ArrayList<Integer> res = new ArrayList<>();
         Deque<TreeNode> stack = new LinkedList<>();
         TreeNode cur = root;
-        while (cur != null || !stack.isEmpty()) {
-            if (cur != null) {
-                if (cur.left != null && cur.right != null && cur.right != stack.peek()) {
-                    stack.push(cur.right);
-                    stack.push(cur);
-                    cur = cur.left;
-                } else if (cur.left == null && cur.right != stack.peek()) {
-                    //stack.push(cur.right);
-                    stack.push(cur);
-                    cur = cur.right;
-                } else if (cur.left == null && cur.right == stack.peek()) {
-                    
-                }
-                else if (cur.right == null) {
-                    stack.push(cur);
-                    cur = cur.left;
-                } else if (cur.right == stack.peek()) {
-                    stack.poll();
-                    stack.push(cur);
-                    cur = cur.right;
-                } else {
-                    res.add(cur.value);
-                    cur = stack.poll();
-                }
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            TreeNode next = stack.peek();
+            if (next.right == cur || next.left == cur || 
+                (next.left == null && next.right == null)) {
+                stack.pop();
+                res.add(next.value);
+                cur = next;
+            } else {
+                if (next.right != null)
+                    stack.push(next.right);
+                if (next.left != null)
+                    stack.push(next.left);
             }
         }
         return res;
@@ -55,7 +44,7 @@ public class IterativeTraversalPostorder {
         IterativeTraversalPostorder it = new IterativeTraversalPostorder();
         TreeNode root = new TreeNode().treeExample1();
         ArrayList<Integer> res = it.iterativePostorder(root);
-        System.out.println(Objects.toString(res, null));
+        System.out.println(Objects.toString(res));
         
     }
     
