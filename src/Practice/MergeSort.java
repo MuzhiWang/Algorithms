@@ -16,7 +16,9 @@ public class MergeSort {
     public int[] mergeSort(int[] array) {
         if (array == null || array.length == 0)
             return null;
-        return divider(array, 0, array.length - 1);
+        int[] res = divider(array, 0, array.length - 1); 
+        array = res;
+        return res;
     }
     
     private int[] divider(int[] array, int left, int right) {
@@ -51,7 +53,9 @@ public class MergeSort {
         int[] array = {2,1,3,6,5};
         int[] res = m.mergeSort(array);
         Iterator it;
+        //array = res;
         System.out.println(Arrays.toString(res));
+        System.out.println(Arrays.toString(array));
         
     }
     
