@@ -17,7 +17,9 @@ public class MergeSort {
         if (array == null || array.length == 0)
             return null;
         int[] res = divider(array, 0, array.length - 1); 
-        array = res;
+        array = res;                                // the reference can not be pass out. remember this is important.
+//        for (int i = 0; i < array.length; ++i)    // You can use this to change the value of array. it works.
+//            array[i] = res[i];
         return res;
     }
     
