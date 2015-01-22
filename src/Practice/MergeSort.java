@@ -5,15 +5,18 @@
  */
 package Practice;
 
+import java.util.Arrays;
+import java.util.Iterator;
+
 /**
  *
  * @author Muzhi
  */
 public class MergeSort {
-    public void mergeSort(int[] array) {
+    public int[] mergeSort(int[] array) {
         if (array == null || array.length == 0)
-            return;
-        array = divider(array, 0, array.length - 1);
+            return null;
+        return divider(array, 0, array.length - 1);
     }
     
     private int[] divider(int[] array, int left, int right) {
@@ -43,5 +46,13 @@ public class MergeSort {
         return res;
     }
     
+    public static void main(String[] args) {
+        MergeSort m = new MergeSort();
+        int[] array = {2,1,3,6,5};
+        int[] res = m.mergeSort(array);
+        Iterator it;
+        System.out.println(Arrays.toString(res));
+        
+    }
     
 }
