@@ -4,10 +4,12 @@
  * and open the template in the editor.
  */
 package Practice;
+import java.util.ArrayList;
 import java.util.PriorityQueue;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 /**
  *
  * @author Muzhi
@@ -87,6 +89,12 @@ public class Practice {
         System.out.println(min);
         
         p.hashMapTest();
+        
+        
+        // Iterator test
+        ArrayList<Integer> aList = new ArrayList<>();
+        Iterator<Integer> it = aList.iterator();
+        
     }
     
 }
