@@ -14,7 +14,7 @@ public class RegEx {
     public boolean regEx(String target, String input) {
         
         
-        
+        return true;
     }
     
 }
