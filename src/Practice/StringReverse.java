@@ -25,7 +25,7 @@ public class StringReverse {
         return new String(strChar);
     }
     
-    /*********  str = hellow yahoo!; output = yahoo hellow!  **********/
+    /*********  str = hellow yahoo!; output = yahoo hellow! It is wrong with problem **********/
     public String strReverseWithSymbol(String str) {
         char[] strChar = str.toCharArray();
         int left = 0;
