@@ -4,12 +4,17 @@
  * and open the template in the editor.
  */
 package Practice;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.PriorityQueue;
 import java.util.Comparator;
+import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedList;
 /**
  *
  * @author Muzhi
@@ -95,6 +100,15 @@ public class Practice {
         ArrayList<Integer> aList = new ArrayList<>();
         Iterator<Integer> it = aList.iterator();
         
+        // Deque
+        Deque<Integer> deque = new LinkedList<>();
+        deque.iterator();
+        ArrayDeque<Integer> ad = new ArrayDeque<>();
+        
+        // Generic test
+        ArrayList<Integer> a;
+        //ArrayList<String> a;
+        //Collections.sort(a);
     }
     
 }
