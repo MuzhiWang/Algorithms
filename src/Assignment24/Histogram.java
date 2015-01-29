@@ -5,6 +5,9 @@
  */
 package Assignment24;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 /**
  *
  * @author Muzhi
@@ -39,9 +42,21 @@ public class Histogram {
     
     /***********  Stack O(n)  *************/
     public int maxRetangle2(int[] histogram) {
-        
-        
-        return 0;
+        if (histogram == null || histogram.length == 0)
+            return -1;
+        Deque<Integer> stack = new ArrayDeque<>();
+        int maxRet = Integer.MIN_VALUE;
+        stack.push(histogram[0]);
+        for (int i = 0; i < histogram.length; ++i) {
+            if (!stack.isEmpty()) {
+                while (!stack.isEmpty() && histogram[i] < stack.peek())
+                    stack.pop();
+                int tempRet = (stack.isEmpty()) ? histogram[i] : (histogram[i] - histogram[stack.peek()]) * histogram[i];
+                maxRet = Math.max(maxRet, tempRet);
+                stack.push(histogram[i]);
+            }
+        }
+        return maxRet;
     }
     
     
@@ -51,7 +66,9 @@ public class Histogram {
     public static void main(String[] args) {
         Histogram h = new Histogram();
         int[] his = {1, 2, 1, 4, 3, 3};
-        System.out.println(h.maxRetangle(his));
+        System.out.println("O(n^2) solution: " + h.maxRetangle(his));
+        System.out.println("O(n) solution: " + h.maxRetangle2(his));
+        
     }
     
 }
