@@ -6,6 +6,7 @@
 package Assignment24;
 
 import java.util.ArrayDeque;
+import java.util.Collections;
 import java.util.Deque;
 
 /**
@@ -46,29 +47,45 @@ public class Histogram {
             return -1;
         Deque<Integer> stack = new ArrayDeque<>();
         int maxRet = Integer.MIN_VALUE;
-        stack.push(histogram[0]);
+        stack.push(0);
         for (int i = 0; i < histogram.length; ++i) {
             if (!stack.isEmpty()) {
-                while (!stack.isEmpty() && histogram[i] < stack.peek())
+                int tempStackMaxRet = Integer.MIN_VALUE;
+                while (!stack.isEmpty() && histogram[i] <= histogram[stack.peek()])
                     stack.pop();
-                int tempRet = (stack.isEmpty()) ? histogram[i] : (histogram[i] - histogram[stack.peek()]) * histogram[i];
+                //Deque<Integer> stackTemp = Collections.copy(stackTemp, stack);
+                int tempRet = (stack.isEmpty()) ? 0 : (i - stack.peek()) * histogram[i];
                 maxRet = Math.max(maxRet, tempRet);
-                stack.push(histogram[i]);
+                stack.push(i);
             }
         }
         return maxRet;
     }
     
-    
-    
-    
+    /*********  teacher's solution, I think it should be tested. ********/
+    public int maxRectangleOptimal(int[] array) {
+        assert array != null && array.length != 0;
+        int maxArea = 0;
+        Deque<Integer> stack = new ArrayDeque<>();
+        for (int i = 0; i <= array.length; ++i) {
+            int cur = (i == array.length) ? 0 : array[i];
+            while (!stack.isEmpty() && array[stack.peek()] >= cur) {
+                int height = array[stack.pop()];
+                int left = stack.isEmpty() ? 0 : stack.peek();
+                maxArea = Math.max(maxArea, height * (i - left));
+            }
+            stack.push(i);
+        }
+        return maxArea;
+    }
     
     public static void main(String[] args) {
         Histogram h = new Histogram();
-        int[] his = {1, 2, 1, 4, 3, 3};
-        System.out.println("O(n^2) solution: " + h.maxRetangle(his));
-        System.out.println("O(n) solution: " + h.maxRetangle2(his));
-        
+        int[] his = {1, 2, 1, 4, 3, 2};
+        int[] his2 = {4, 2, 1, 3, 4, 1, 5};
+        System.out.println("O(n^2) solution: " + h.maxRetangle(his2));
+        System.out.println("O(n) solution: " + h.maxRetangle2(his2));
+        System.out.println("O(n) stack test: " + h.maxRectangleOptimal(his2));
     }
     
 }
