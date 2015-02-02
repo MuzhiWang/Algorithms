@@ -7,6 +7,7 @@ package TheDataInCubator;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -16,6 +17,49 @@ import java.util.List;
  */
 public class SubwaySeats {
     
+    public void subway(int N) {
+        assert N > 0;
+        int maxSeats = N / 2;
+        int minSeats = N / 3;
+        
+        for (int i = minSeats; i < maxSeats; ++i) {
+            
+        }
+        
+    }
+    
+    private double[][] seatsCalculate(int n) {
+        int maxSeats = n / 2;
+        int minSeats = n / 3;
+        HashMap<Integer, Double> hashMap = new HashMap<>();
+        double[][] res = new double[maxSeats - minSeats][2];
+        for (int i = minSeats; i <= maxSeats; ++i) {
+            for (int j = 0; j <= i; ++j) {
+                if (j * 2 + (i - j) * 3 == n) {
+                    double comNum = combination(n, j);
+                    res[i - minSeats][0] = i;
+                    res[i - minSeats][1] = comNum;
+                }
+            }
+        }
+        return res;
+    }
+    
+    private double combination(int total, int com) {
+        double res = 1;
+        while (com > 0) {
+            res = res * total / com;
+            total--;
+            com--;
+        }
+        return res;
+    }
+    
+    
+    
+    
+    
+    /*******  Recursion method, but memory overflowed when N > 50  ********/
     public int meanRes = 0;
     public double standardDeviationRes = 0;
     public void subwaySeats(int N) {
@@ -30,8 +74,6 @@ public class SubwaySeats {
         meanRes = meanNum(seatsRes1);
         standardDeviationRes = standardDeviation(seatsRes1);
     }
-    
-    
     
     private void seatsCalculate(int n, int seatNum, List<Integer> res) {
         if (n == 1) {
