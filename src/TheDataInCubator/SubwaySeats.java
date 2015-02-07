@@ -167,8 +167,7 @@ public class SubwaySeats {
         System.out.println("25 seats's mean num: " + subwaySeat.meanRes);
         System.out.println("25 seats's standard deviation: " + subwaySeat.standardDeviationRes);
         
-        int num = 50000
-                ;
+        int num = 500;
         subwaySeat.subway(num);
         System.out.println(num + " seats's mean num: " + subwaySeat.meanRes);
         System.out.println(num + " seats's standard deviation: " + subwaySeat.standardDeviationRes);
