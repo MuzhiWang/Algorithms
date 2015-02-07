@@ -35,15 +35,13 @@ public class Game {
         Game game = new Game();
         
         int[] input = new int[4];
-        while (sc.nextLine() != null) {
-            String temp[] = sc.nextLine().split(" ");
-            for (int i = 0; i < 4; ++i) {
-                input[i] = Integer.parseInt(temp[i]);
-            }
-            out.println(game.game(input));
+        String temp[] = sc.nextLine().split(" ");
+        for (int i = 0; i < 4; ++i) {
+            input[i] = Integer.parseInt(temp[i]);
         }
+        out.println(game.game(input));
+        
         out.close();
-        return;
     }
     
     
