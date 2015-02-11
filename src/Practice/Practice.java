@@ -109,6 +109,9 @@ public class Practice {
         ArrayList<Integer> a;
         //ArrayList<String> a;
         //Collections.sort(a);
+        
+        String str = "abcdef";
+        System.out.println(str.contains("abe"));
     }
     
 }
