@@ -7,6 +7,7 @@ package Practice;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.PriorityQueue;
 import java.util.Comparator;
@@ -15,6 +16,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
+
+import java.util.Date;
+import java.util.Locale;
 /**
  *
  * @author Muzhi
@@ -112,6 +116,8 @@ public class Practice {
         
         String str = "abcdef";
         System.out.println(str.contains("abe"));
+        
+        int today = Calendar.getInstance().get(Calendar.YEAR);
     }
     
 }
