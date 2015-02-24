@@ -15,7 +15,7 @@ public class Assignment24 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // hasn't finished: all tasks
+        // hasn't finished: Q1.3;   Q4.1 histogram O(n) solition has some problem. 
         // TODO code application logic here
     }
     

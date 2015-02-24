@@ -27,7 +27,7 @@ public class GregCode {
         byte ele2 = 3;
         GregCode greg = new GregCode();
         System.out.println(greg.isGregCode(ele1, ele2));
-        
+        System.out.println(ele2);
     }
     
 }

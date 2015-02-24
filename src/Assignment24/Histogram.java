@@ -62,7 +62,8 @@ public class Histogram {
         return maxRet;
     }
     
-    /*********  teacher's solution, I think it should be tested. ********/
+    /*********  teacher's solution, I think it should be tested. 
+     * I think there is logical problem of the solution ********/
     public int maxRectangleOptimal(int[] array) {
         assert array != null && array.length != 0;
         int maxArea = 0;
