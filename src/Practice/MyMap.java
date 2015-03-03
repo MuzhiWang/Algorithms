@@ -10,9 +10,11 @@ package Practice;
  * @author Muzhi
  */
 public interface MyMap<K, V> {
+    
+    //int n = 0;
     //int num = 0;
     int size();
-    
+    //int num;
     boolean isEmpty();
     
     void clear();

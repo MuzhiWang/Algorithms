@@ -118,6 +118,14 @@ public class Practice {
         System.out.println(str.contains("abe"));
         
         int today = Calendar.getInstance().get(Calendar.YEAR);
+        Date todayDate = Calendar.getInstance().getTime();
+        System.out.println(today);
+        System.out.println(todayDate);
+        
+        String str2 = "0123456789";
+        String subStr = str2.substring(0, 10);
+        System.out.println(subStr);
+        System.out.println("str2's length: " + str2.length());
     }
     
 }
