@@ -5,6 +5,8 @@
  */
 package Epic;
 
+import java.util.Arrays;
+
 /**
  *
  * @author Muzhi
@@ -17,8 +19,21 @@ package Epic;
  */
 
 public class AdvisedAverage {
-    public int average() {
-        
-        return -1;
+    public float average(int[] array) {
+        assert array != null && array.length > 0;
+        if (array.length <= 3)
+            return 0;
+        Arrays.sort(array);
+        int sum = 0;
+        for (int i = 0; i < array.length - 3; ++i) {
+            sum += array[i];
+        }
+        return (float)sum / (array.length - 3);
     }
-}
+    
+    public static void main(String... args) {
+        AdvisedAverage aa = new AdvisedAverage();
+        int[] input = {1, 2, 3, 4, 5, 6, 9, 10, 11};
+        System.out.println(aa.average(input));
+    }
+} 
