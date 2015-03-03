@@ -9,8 +9,6 @@ package Epic;
  *
  * @author Muzhi
  */
-public class EpicSummary {
-    
-    /// Unfinished:    balancedestring
+public class CalculateDays {
     
 }
