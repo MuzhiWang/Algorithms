@@ -44,6 +44,7 @@ public class KeypadLettersCombinations {
         hash.put(7, new char[]{'p', 'q', 'r', 's'});
         hash.put(8, new char[]{'t', 'u', 'v'});
         hash.put(9, new char[]{'w', 'x', 'y', 'z'});
+        /// consider the 1 & 0 keypad as null
         hash.put(1, new char[]{});
         hash.put(0, new char[]{});
         
