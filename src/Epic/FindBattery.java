@@ -6,6 +6,7 @@
 package Epic;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -19,26 +20,47 @@ e.g 输入20， 答{20} 输入17 答没有 输入18，那可能是{6,6,6}也可�
 */
 
 public class FindBattery {
-    public List<List<Integer>> getBattery(int num) {
+    public ArrayList<ArrayList<Integer>> getBattery(int num) {
         assert num > 0;
-        List<List<Integer>> res = new ArrayList<>();
-        List<Integer> cur = new ArrayList<>();
+        ArrayList<ArrayList<Integer>> res = new ArrayList<>();
+        ArrayList<Integer> cur = new ArrayList<>();
         int leftNum = num;
-        int index = 0;
-        int[  
+        int[] battery = {6, 9, 20};
+        
+        getBatteryHelper(res, cur, leftNum, 0, battery);
+        
         return res;
     }
     
-    private void getBatteryHelper(List<List<Integer>> res, List<Integer> cur, int leftNum, int index) {
+    private void getBatteryHelper(ArrayList<ArrayList<Integer>> res, ArrayList<Integer> cur, int leftNum, int index, int[] battery) {
         if (leftNum == 0) {
-            res.add(cur);
+            /// Notice here!! Should not directly use res.add(cur) since cur would be change in the code.
+            res.add(new ArrayList<Integer>(cur));
+            //System.out.println(Arrays.toString(cur.toArray()));
             return;
         }
-        if (leftNum < 0) return;
-        for (int i = index; i < 3; ++i) {
-            while (leftNum - 
+        if (leftNum < 0 || index > 2) return;
+        int count = 0;
+        while (leftNum - battery[index] * count >= 0) {
+            for (int i = 0; i < count; ++i)
+                cur.add(battery[index]);
+            getBatteryHelper(res, cur, leftNum - battery[index] * count, index + 1, battery);
+            for (int i = 0; i < count; ++i)
+                cur.remove(cur.size() - 1);
+            count++;
         }
-        
     }
     
+    public static void main(String... args) {
+        FindBattery fb = new FindBattery();
+        ArrayList<ArrayList<Integer>> res = fb.getBattery(24);
+        
+        for (List<Integer> l : res) {
+            System.out.println(Arrays.toString(l.toArray()));
+        }
+        
+        for (int i = 0; i < res.size(); ++i) {
+            //System.out.println(res.get(i).get(0));
+        }
+    }
 }
