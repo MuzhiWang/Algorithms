@@ -5,6 +5,9 @@
  */
 package Epic;
 
+import java.util.Arrays;
+import java.util.Random;
+
 /**
  *
  * @author Muzhi
@@ -34,4 +37,120 @@ A random generator generates out any number from 1 to 1000.
 
 public class Mingo {
     
+    public void getMingo(int[][] matrix) {
+        assert matrix != null && matrix.length == 10 && matrix[0].length == 10;
+        int count = 1;
+        for (int i = 0; i < 100; ++i) {
+            if (checkMingo(matrix, i / 10, i % 10)) {
+                System.out.println("The " + count + " mingo is row " + (i / 10 + 1) + " , column " + (i % 10 + 1));
+                System.out.println();
+                count++;
+            }
+        }
+    }
+    
+    private boolean checkMingo(int[][] matrix, int row, int column) {
+        boolean[] isMingo = new boolean[4];
+        Arrays.fill(isMingo, true);
+        for (int i = 0; i < 10; ++i) {
+            if (matrix[row][i] == 0) {
+                isMingo[0] = false;
+                break;
+            }
+        }
+        if (isMingo[0] == true) {
+            System.out.println("The row is mingo.");
+            return true;
+        }
+        
+        for (int i = 0; i < 10; ++i) {
+            if (matrix[i][column] == 0) { 
+                isMingo[1] = false;
+                break;
+            }
+        }
+        if (isMingo[1] == true) {
+            System.out.println("The column is mingo");
+            return true;
+        }
+        
+        /// diagonals check. four derections.
+        int r = row, c = column;
+        while (r < 10 && c < 10) {
+            if (matrix[r][c] == 0) {
+                isMingo[2] = false;
+                break;
+            }
+            r++;
+            c++;
+        }
+        r = row; 
+        c = column;
+        while (r >= 0 && c >= 0) {
+            if (matrix[r][c] == 0) {
+                isMingo[2] = false;
+                break;
+            }
+            r--;
+            c--;
+        }
+        if (isMingo[2]) {
+            System.out.println("The diagonal is mingo.");
+            return true;
+        }
+        
+        r = row;
+        c = column;
+        while (r < 10 && c >= 0) {
+            if (matrix[r][c] == 0) {
+                isMingo[3] = false;
+                break;
+            }
+            r++;
+            c--;
+        }
+        r = row; 
+        c = column;
+        while (r >= 0 && c < 10) {
+            if (matrix[r][c] == 0) {
+                isMingo[3] = false;
+                break;
+            }
+            r--;
+            c++;
+        }
+        if (isMingo[3]) {
+            System.out.println("The anti-diagonal is mingo.");
+            return true;
+        }
+        return false;
+    }
+    
+    private void generateMatrix(int[][] matrix, int countNumber) {
+        for (int i = 0; i < countNumber; ++i) {
+            Random rand = new Random();
+            //int rand = (int)(Math.random() * 1000);
+            int row = rand.nextInt(10);
+            int col = rand.nextInt(10);
+            matrix[row][col] = rand.nextInt(1000);
+        }
+    }
+    
+    private void printMatrix(int[][] matrix) {
+        for (int i = 0; i < 10; ++i) {
+            for (int j = 0; j < 10; ++j) {
+                System.out.print(matrix[i][j] + "\t");
+            }
+            System.out.println();
+        }
+        System.out.println();
+    }
+    
+    public static void main(String... args) {
+        Mingo m = new Mingo();
+        int[][] matrix = new int[10][10];
+        m.generateMatrix(matrix, 100);
+        m.printMatrix(matrix);
+        m.getMingo(matrix);
+    }
 }
