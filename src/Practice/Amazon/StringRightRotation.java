@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Practice;
+package Practice.Amazon;
 
 /**
  *
@@ -17,6 +17,7 @@ public class StringRightRotation {
             return -1;
         String str = str1 + str1;
         return str.indexOf(str2) != -1 ? 1 : -1;
+        //str.contains(str);
     }
     
     public static void main(String... args) {
